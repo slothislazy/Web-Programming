@@ -36,22 +36,20 @@ class GameController extends Controller
             "title" => "required",
             "developer" => "required",
             "price" => "required",
-            "category" => "required",
-            "game_image" => "required",
-            "category" => "required|max:60|min:5"
-            // "release_date" => "required",
-            // "image" => "required"
+            "category_id" => "required",
+            "release_date" => "required",
+            "image" => "required"
         ]);
 
-        $extension = $request->file('game_image')->getClientOriginalExtension();
+        $extension = $request->file('image')->getClientOriginalExtension();
         $filename = $request->title . '-' . $request->category . '.' . $extension;
-        $request->file('game_image')->storeAs('/thumbnails', $filename, 'public');
+        $request->file('image')->storeAs('/thumbnails', $filename, 'public');
 
         Game::create([
             "title" => $request->title,
             "developer" => $request->developer,
             "price" => $request->price,
-            "category_id" => $request->category,
+            "category_id" => $request->category_id,
             "image" => $filename,
             "release-date" => new Carbon($request->release_date)
         ]);

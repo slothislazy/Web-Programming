@@ -5,9 +5,9 @@
 @endsection
 
 @section('container')
-    <h1 class = "text-3xl font-bold dark:text-white underline">Create Game</h1>
     <form class="max-w-sm mx-auto" method = "POST" action = "{{route("game.store")}}" enctype="multipart/form-data">
     @csrf
+        <h1 class = "text-3xl font-bold dark:text-white mb-5">Create Game</h1>
         <div class="mb-5">
             <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Game Title</label>
             <input type="text" id="title" name = "title" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" />
@@ -24,15 +24,15 @@
             <div class = "mb-4 text-sm text-red-800 rounded-lg dark:text-red-400">{{$message}}</div>
         @enderror
         <div class = "mb-5">
-            <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Game Category</label>
-            <select id="category" name = "category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <label for="category_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Game Category</label>
+            <select id="category_id" name = "category_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option disabled selected value>Choose a category</option>
                 @foreach ($categories as $category)
                     <option value = {{$category->id}}>{{$category->name}}</option>
                 @endforeach
             </select>
         </div>
-        @error('category')
+        @error('category_id')
             <div class = "mb-4 text-sm text-red-800 rounded-lg dark:text-red-400">{{$message}}</div>
         @enderror
         <!-- <div class="mb-5"> -->
@@ -51,9 +51,9 @@
         @enderror
         <div class = "mb-5">
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="image">Upload Game Image</label>
-            <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="image" name = "game_image" type="file">
+            <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="image" name = "image" type="file">
         </div>
-        @error('game_image')
+        @error('image')
             <div class = "mb-4 text-sm text-red-800 rounded-lg dark:text-red-400">{{$message}}</div>
         @enderror
         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="datepicker-autohide">Select Release Date</label>

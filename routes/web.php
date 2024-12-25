@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,4 +20,8 @@ Route::POST('/store-game', [GameController::class, 'store'])->name('game.store')
 Route::get('/category/{category}', [CategoryController::class, 'show'])->name('category.show');
 
 #Authentication Controller
-Route::get('/login', function () {})->name('login');
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+
+#Registration Controller
+Route::get('/register', [RegistrationController::class, 'register'])->name('register');
+Route::POST('/store-register', [RegistrationController::class, 'store'])->name('register.store');

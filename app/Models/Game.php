@@ -15,7 +15,7 @@ class Game extends Model
         "title",
         "developer",
         "price",
-        "release-date",
+        "release_date",
         "category_id",
         "image",
         "description"
