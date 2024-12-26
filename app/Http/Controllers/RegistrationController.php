@@ -27,7 +27,7 @@ class RegistrationController extends Controller
 
         User::create($validated);
 
-        session()->flash("success", "Registration Successful!");
+        session()->flash("message", "Registration Successful!");
 
         return redirect(route('login'));
     }

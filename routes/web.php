@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\RegistrationController;
@@ -27,3 +28,8 @@ Route::POST('/logout', [AuthController::class, 'logout'])->middleware('auth')->n
 #Registration Controller
 Route::get('/register', [RegistrationController::class, 'register'])->name('register');
 Route::POST('/store-register', [RegistrationController::class, 'store'])->name('register.store');
+
+#Cart Controller
+Route::get('/view-cart', [CartController::class, 'view_cart'])->middleware('auth')->name('cart.view');
+Route::POST('/cart/add/{game_id}', [CartController::class, 'add_to_cart'])->middleware('auth')->name('cart.add');
+Route::DELETE('/cart/delete/{item_id}', [CartController::class, 'remove_from_cart'])->middleware('auth')->name('cart.remove');
