@@ -31,6 +31,13 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make(12345678)
 
         ]);
+        User::factory()->create([
+            'username' => 'Megumi',
+            'email' => 'megumi@gmail.com',
+            'phone_num' => '08111111',
+            'password' => Hash::make(12345678)
+
+        ]);
 
         Category::factory()->create([
             'name' => "Role Playing Game",

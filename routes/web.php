@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
@@ -33,3 +34,6 @@ Route::POST('/store-register', [RegistrationController::class, 'store'])->name('
 Route::get('/view-cart', [CartController::class, 'view_cart'])->middleware('auth')->name('cart.view');
 Route::POST('/cart/add/{game_id}', [CartController::class, 'add_to_cart'])->middleware('auth')->name('cart.add');
 Route::DELETE('/cart/delete/{item_id}', [CartController::class, 'remove_from_cart'])->middleware('auth')->name('cart.remove');
+
+#Admin Controller
+Route::get('/admin-dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
