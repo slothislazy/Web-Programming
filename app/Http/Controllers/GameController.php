@@ -12,6 +12,7 @@ class GameController extends Controller
     //
     public function index()
     {
+        $featured_games = Game::where('featured', true)->get();
         $categories = Category::all();
         $games = Game::all();
 
@@ -60,8 +61,10 @@ class GameController extends Controller
 
     public function show(Game $game)
     {
+        $similar_games = Game::where('category_id', $game->category->id)->get();
         return view('game-show', [
-            "game" => $game
+            "game" => $game,
+            "similar_games" => $similar_games
         ]);
     }
 }

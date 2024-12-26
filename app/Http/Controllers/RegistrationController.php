@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class RegistrationController extends Controller
 {
@@ -14,12 +16,19 @@ class RegistrationController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            "username" => "required|max:255|min:3",
-            "password" => "required",
-            "email" => "required",
-            "phone_num" => "required|min:5|max:10",
+            "username" => "required|max:255|min:3|unique:users",
+            "password" => "required|min:5",
+            "email" => "required|unique:users",
+            "phone_num" => "required|min:6|max:15|unique:users",
 
         ]);
-        return $validated;
+
+        $validated["password"] = Hash::make($validated["password"]);
+
+        User::create($validated);
+
+        session()->flash("success", "Registration Successful!");
+
+        return redirect(route('login'));
     }
 }

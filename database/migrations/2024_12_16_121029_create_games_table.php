@@ -21,6 +21,7 @@ return new class extends Migration
             $table->longText("description")->nullable();
             $table->integer("price");
             $table->date("release_date");
+            $table->boolean('featured')->default(false);
             $table->string("image");
         });
     }

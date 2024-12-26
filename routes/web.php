@@ -20,7 +20,9 @@ Route::POST('/store-game', [GameController::class, 'store'])->name('game.store')
 Route::get('/category/{category}', [CategoryController::class, 'show'])->name('category.show');
 
 #Authentication Controller
-Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::get('/login', [AuthController::class, 'login'])->middleware('guest')->name('login');
+Route::POST('/authenticate', [AuthController::class, 'authenticate'])->middleware('guest')->name('authenticate');
+Route::POST('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
 #Registration Controller
 Route::get('/register', [RegistrationController::class, 'register'])->name('register');
