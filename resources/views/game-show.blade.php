@@ -23,10 +23,13 @@
                 </div>
                 <div class = "flex flex-row justify-between bottom-10 items-center">
                     <span class = "text-3xl h-fit text-white font-bold bottom-10">Price: Rp. {{$game->price}}</span>
-                    <a href="#" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold rounded-lg text-2xl px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 no-underline flex flex-row gap-2 items-center max-w-fit">
-                        @include('components.icons.cart')
-                        Add to cart
-                    </a>
+                    <form action = "{{route('cart.add', $game->id)}}" method = "POST">
+                        @csrf
+                        <button type="submit" class = "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold rounded-lg text-2xl px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 no-underline flex flex-row gap-2 items-center max-w-fit">
+                            @include('components.icons.cart')
+                            Add to cart
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
