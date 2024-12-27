@@ -47,7 +47,8 @@ class GameController extends Controller
             "price" => "required",
             "category_id" => "required",
             "release_date" => "required",
-            "image" => "required"
+            "image" => "required",
+            "description" => "required|min:5|max:255"
         ]);
 
         $extension = $request->file('image')->getClientOriginalExtension();
@@ -60,7 +61,8 @@ class GameController extends Controller
             "price" => $request->price,
             "category_id" => $request->category_id,
             "image" => $filename,
-            "release-date" => new Carbon($request->release_date)
+            "release_date" => new Carbon($request->release_date),
+            "description" => $request->description
         ]);
 
         return redirect(route("game.index"));
@@ -88,7 +90,8 @@ class GameController extends Controller
             "price" => "required",
             "category_id" => "required",
             "release_date" => "required",
-            "image" => "required"
+            "image" => "required",
+            "description" => "required|min:5|max:255"
         ]);
 
         $extension = $request->file('image')->getClientOriginalExtension();
@@ -101,7 +104,8 @@ class GameController extends Controller
             "price" => $request->price,
             "category_id" => $request->category_id,
             "image" => $filename,
-            "release-date" => new Carbon($request->release_date)
+            "release_date" => new Carbon($request->release_date),
+            "description" => $request->description
         ]);
 
         return redirect(route("admin.dashboard"));
@@ -109,7 +113,7 @@ class GameController extends Controller
 
     public function show(Game $game)
     {
-        $similar_games = Game::where('category_id', $game->category->id)->get();
+        $similar_games = Game::where('category_id', $game->category->id)->where('id', '!=', $game->id)->get();
         return view('game-show', [
             "game" => $game,
             "similar_games" => $similar_games
