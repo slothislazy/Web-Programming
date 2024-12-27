@@ -6,6 +6,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -45,3 +46,6 @@ Route::DELETE('/cart/delete/{item_id}', [CartController::class, 'remove_from_car
 
 #Admin Controller
 Route::get('/admin-dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+
+#Review Controller
+Route::POST('/game/{game}/rate', [ReviewController::class, 'store'])->middleware('auth')->name('game.rate');
