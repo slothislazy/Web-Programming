@@ -46,13 +46,15 @@
                         </ul>
                     </div>
                     </li>
-                    <li>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-                    </li>
                 </ul>
-                <div class="py-1">
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
-                </div>
+                @auth
+                    <div class="py-1 dark:hover:bg-gray-600 hover:bg-gray-100 rounded-lg">
+                        <form action = "{{route('logout')}}" method = "POST">
+                        @csrf
+                            <button type="submit" class = "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign Out</button>
+                        </form>
+                    </div>
+                @endauth
             </div>
         </li>
         <li>
