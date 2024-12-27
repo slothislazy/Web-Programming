@@ -15,12 +15,19 @@ class AdminController extends Controller
             abort(403, 'Unauthorized access!');
         }
 
-        $games = Game::all();
-        $categories = Category::all();
+        $tab = request('tab', 'games');
+
+        if ($tab == 'games') {
+            $items = Game::all();
+        } elseif ($tab == 'categories') {
+            $items = Category::all();
+        } else {
+            abort(404);
+        }
 
         return view('admin-dashboard', [
-            "games" => $games,
-            "categories" => $categories
+            "items" => $items,
+            "tab" => $tab
         ]);
     }
 }
