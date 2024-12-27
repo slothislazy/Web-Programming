@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Game;
+use App\Models\Review;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class GameController extends Controller
@@ -114,9 +116,11 @@ class GameController extends Controller
     public function show(Game $game)
     {
         $similar_games = Game::where('category_id', $game->category->id)->where('id', '!=', $game->id)->get();
+        $user_review = Review::where('user_id', Auth::id())->where('game_id', $game->id);
         return view('game-show', [
             "game" => $game,
-            "similar_games" => $similar_games
+            "similar_games" => $similar_games,
+            "user_review" => $user_review
         ]);
     }
 
