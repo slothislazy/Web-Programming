@@ -75,6 +75,12 @@
         @error('release_date')
             <div class = "mb-4 text-sm text-red-800 rounded-lg dark:text-red-400">{{$message}}</div>
         @enderror
+        <div class="flex items-start mb-6">
+            <div class="flex items-center h-5">
+                <input id="featured" name = "featured" type="checkbox" value="1" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"/>
+            </div>
+            <label for="featured"  class="ms-2 text-sm font-medium text-gray-500 dark:text-gray-600">Feature Game</label>
+        </div>
         <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Create Game</button>
     </form>
 @endsection

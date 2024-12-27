@@ -15,13 +15,14 @@ class GameController extends Controller
     //
     public function index()
     {
-        $featured_games = Game::where('featured', true)->get();
+        $featured_games = Game::where('featured', 1)->get();
         $categories = Category::all();
         $games = Game::all();
 
         return view('home', [
             "games" => $games,
             "categories" => $categories,
+            "featured_games" => $featured_games
         ]);
     }
 
@@ -44,7 +45,7 @@ class GameController extends Controller
             return abort(403, "Unauthorized Access");
         }
         $request->validate([
-            "title" => "required",
+            "title" => "required|unique:games",
             "developer" => "required",
             "price" => "required",
             "category_id" => "required",
@@ -64,7 +65,8 @@ class GameController extends Controller
             "category_id" => $request->category_id,
             "image" => $filename,
             "release_date" => new Carbon($request->release_date),
-            "description" => $request->description
+            "description" => $request->description,
+            "featured" => $request->featured ?? 0
         ]);
 
         return redirect(route("game.index"));
@@ -107,7 +109,8 @@ class GameController extends Controller
             "category_id" => $request->category_id,
             "image" => $filename,
             "release_date" => new Carbon($request->release_date),
-            "description" => $request->description
+            "description" => $request->description,
+            "featured" => $request->featured ?? 0
         ]);
 
         return redirect(route("admin.dashboard"));

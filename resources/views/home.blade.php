@@ -9,7 +9,7 @@
             Featured Games
         </h1>
         <div class = "flex gap-10 overflow-auto mt-10 mb-16">
-            @foreach ($games as $game)
+            @foreach ($featured_games as $game)
                 @include('components.game-card')
             @endforeach
         </div>

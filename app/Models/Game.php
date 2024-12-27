@@ -19,7 +19,8 @@ class Game extends Model
         "release_date",
         "category_id",
         "image",
-        "description"
+        "description",
+        "featured"
     ];
 
     public function category(): BelongsTo
